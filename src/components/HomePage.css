@@ -1,0 +1,42 @@
+.homepage {
+    padding: 1rem;
+  }
+  
+  .summary-section {
+    margin-bottom: 2rem;
+  }
+  
+  .summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem; /* Increased gap for better spacing */
+  }
+  
+  .placeholder {
+    background-color: #ccc;
+    height: 150px; /* Increased height for better proportions */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px; /* Add rounded corners for a modern look */
+  }
+  
+  .tasks-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem; /* Added gap to separate Overdue and Upcoming sections */
+  }
+  
+  .task-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .task-list li {
+    background-color: #f4f4f4;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+  }
+  

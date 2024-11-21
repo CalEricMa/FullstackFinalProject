@@ -1,0 +1,36 @@
+.tasks-page {
+  padding: 1rem;
+}
+
+.add-task-button {
+  background-color: orange;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 1rem; /* Added margin below the button */
+}
+
+.task-controls {
+  margin: 1rem 0;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.task-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem; /* Added spacing above the table */
+}
+
+.task-table th,
+.task-table td {
+  border: 1px solid #ddd;
+  padding: 0.75rem; /* Increased padding for better readability */
+}
+
+.task-table th {
+  background-color: #f4f4f4;
+  text-align: left;
+}
