@@ -1,42 +1,69 @@
 .homepage {
-    padding: 1rem;
-  }
-  
-  .summary-section {
-    margin-bottom: 2rem;
-  }
-  
-  .summary-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem; /* Increased gap for better spacing */
-  }
-  
-  .placeholder {
-    background-color: #ccc;
-    height: 150px; /* Increased height for better proportions */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px; /* Add rounded corners for a modern look */
-  }
-  
-  .tasks-section {
-    display: flex;
-    justify-content: space-between;
-    gap: 2rem; /* Added gap to separate Overdue and Upcoming sections */
-  }
-  
-  .task-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .task-list li {
-    background-color: #f4f4f4;
-    margin-bottom: 0.5rem;
-    padding: 0.5rem;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
-  }
-  
+  padding: 1.5rem;
+  background-color: #f9f9f9; /* Light gray background */
+  min-height: 100vh; /* Ensure it covers the full screen */
+}
+
+.welcome-section {
+  text-align: center;
+  margin-bottom: 2rem;
+  background-color: #e8f5e9; /* Light green for welcome section */
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.welcome-section h2, h3{
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #004d40; /* Dark teal for title */
+}
+
+.welcome-section p {
+  font-size: 1.2rem;
+  color: #2e3a59; /* Dark gray for text */
+}
+
+.summary-section {
+  margin-bottom: 2rem;
+  background-color: #ffffff; /* White for contrast */
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.summary-section h3 {
+  color: #004d40; /* Dark teal for visibility */
+  margin-bottom: 0.5rem;
+}
+
+.tasks-section {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+}
+
+.task-list li {
+  background-color: #ffffff; /* White for task cards */
+  color: #2e3a59; /* Dark gray text */
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.task-list li:hover {
+  background-color: #e0f2f1; /* Lighter teal on hover */
+}
+
+.summary-section p,
+.tasks-section p {
+  font-size: 1rem;
+  color: #2e3a59; /* Text remains dark gray for readability */
+}

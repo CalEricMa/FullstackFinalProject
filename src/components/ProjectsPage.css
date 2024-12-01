@@ -1,26 +1,145 @@
 .projects-page {
-  padding: 1rem;
+  padding: 1.5rem;
+  background-color: #f9f9f9; /* Light gray */
+  min-height: 100vh;
 }
 
-.add-project-button {
-  background-color: orange;
-  color: white;
-  padding: 0.5rem 1rem;
-  border: none;
-  cursor: pointer;
-  margin-bottom: 1rem; /* Added margin below the button */
+.welcome-section {
+  text-align: center;
+  margin-bottom: 2rem;
+  background-color: #e8f5e9; /* Light green */
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.welcome-section h2 {
+  font-size: 2rem;
+  color: #004d40; /* Dark teal */
+}
+
+.welcome-section p {
+  font-size: 1.2rem;
+  color: #2e3a59; /* Dark gray */
+}
+
+.summary-section {
+  background-color: #ffffff; /* White */
+  padding: 1rem;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
-  gap: 1.5rem; /* Increased gap for spacing */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
 }
 
 .project-card {
-  background-color: #f9f9f9;
+  background-color: #ffffff; /* White */
   padding: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.project-completed {
+  background-color: #e8f5e9; /* Light green */
+  border: 1px solid #c8e6c9;
+  text-decoration: line-through;
+  color: #4caf50; /* Green text for completed */
+}
+
+.project-controls {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.project-form {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid #cfd8dc; /* Light gray border */
+  background-color: #ffffff; /* White form background */
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.project-form label {
+  color: #2e3a59; /* Dark gray text */
+  font-size: 1rem;
+}
+
+.project-form input,
+.project-form textarea {
+  padding: 0.5rem;
+  border: 1px solid #cfd8dc;
+  border-radius: 4px;
+  font-size: 1rem;
+  color: #2e3a59; /* Dark gray text */
+  background-color: #f9f9f9; /* Light gray background */
+}
+
+.project-form button {
+  background-color: #004d40; /* Dark teal */
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.project-form button:hover {
+  background-color: #00332e; /* Darker teal */
+}
+
+.add-project-button {
+  background-color: #004d40; /* Dark teal */
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.add-project-button:hover {
+  background-color: #00332e; /* Darker teal */
+}
+
+.edit-button {
+  background-color: #ffab00; /* Amber */
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.edit-button:hover {
+  background-color: #ff9100; /* Darker amber */
+}
+
+.delete-button {
+  background-color: #f44336; /* Red */
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f; /* Darker red */
+}
+
+p {
+  font-size: 1.2rem;
+  color: #2e3a59; /* Dark gray for text */
 }
