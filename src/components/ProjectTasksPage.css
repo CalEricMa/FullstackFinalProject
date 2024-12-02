@@ -1,0 +1,158 @@
+/* ProjectTasksPage.css */
+
+.tasks-page {
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+  }
+  
+  .welcome-section {
+    text-align: center;
+    margin-bottom: 2rem;
+    background-color: #e8f5e9;
+    padding: 1.5rem;
+    border-radius: 8px;
+    color: #2e7d32;
+  }
+  
+  .tasks-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    background-color: white;
+  }
+  
+  .tasks-table th,
+  .tasks-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .tasks-table th {
+    background-color: #4caf50;
+    color: white;
+    text-transform: uppercase;
+  }
+  
+  .tasks-table td {
+    color: #333;
+  }
+  
+  .task-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  .task-controls select,
+  
+  .task-controls button {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: rgb(120, 207, 124);
+    cursor: pointer;
+  }
+  
+  .task-controls button:hover {
+    background-color: #337231;
+  }
+  
+  .add-task-button {
+    background-color: #004d40;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+  
+  .add-task-button:hover {
+    background-color: #00332e;
+  }
+  
+  .edit-button {
+    background-color: #ffa726;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.3rem 0.6rem;
+    cursor: pointer;
+  }
+  
+  .edit-button:hover {
+    background-color: #fb8c00;
+  }
+  
+  .delete-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.3rem 0.6rem;
+    cursor: pointer;
+  }
+  
+  .delete-button:hover {
+    background-color: #d32f2f;
+  }
+  
+  .task-completed {
+    text-decoration: line-through;
+    color: #4caf50;
+  }
+  
+  
+
+  .project-form {
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 1px solid #cfd8dc; /* Light gray border */
+    background-color: #ffffff; /* White form background */
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .project-form label {
+    color: #2e3a59; /* Dark gray text */
+    font-size: 1rem;
+  }
+  
+  .project-form input,
+  .project-form textarea {
+    padding: 0.5rem;
+    border: 1px solid #cfd8dc;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #2e3a59; /* Dark gray text */
+    background-color: #f9f9f9; /* Light gray background */
+  }
+  
+  .project-form button {
+    background-color: #004d40; /* Dark teal */
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .project-form button:hover {
+    background-color: #00332e; /* Darker teal */
+  }
+  
+  .add-project-button {
+    background-color: #004d40; /* Dark teal */
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+  }

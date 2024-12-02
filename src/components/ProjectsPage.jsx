@@ -16,20 +16,16 @@ const ProjectsPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if data already exists to prevent redundant fetches
-    if (projects.length === 0) {
-      fetchProjects();
-    }
+    const fetchProjects = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/projects");
+        setProjects(response.data);
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      }
+    };
+    fetchProjects();
   }, []);
-
-  const fetchProjects = async () => {
-    try {
-      const response = await axios.get("http://localhost:5000/api/projects");
-      setProjects(response.data);
-    } catch (error) {
-      console.error("Error fetching projects:", error);
-    }
-  };
 
   const toggleForm = () => {
     setShowForm(!showForm);
@@ -50,17 +46,10 @@ const ProjectsPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const projectData = {
-        name: newProject.name,
-        description: newProject.description,
-        dueDate: newProject.dueDate,
-        completed: newProject.completed,
-      };
-
       if (editingProjectId) {
         const response = await axios.put(
           `http://localhost:5000/api/projects/${editingProjectId}`,
-          projectData
+          newProject
         );
         setProjects((prev) =>
           prev.map((project) =>
@@ -70,11 +59,10 @@ const ProjectsPage = () => {
       } else {
         const response = await axios.post(
           "http://localhost:5000/api/projects",
-          projectData
+          newProject
         );
         setProjects((prev) => [...prev, response.data]);
       }
-
       toggleForm();
     } catch (error) {
       console.error("Error saving project:", error);
@@ -109,6 +97,15 @@ const ProjectsPage = () => {
     } catch (error) {
       console.error("Error toggling completed:", error);
     }
+  };
+
+  const navigateToProjectTasks = (projectId) => {
+    navigate(`/projects/${projectId}/tasks`);
+  };
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString(); // Formats the date as MM/DD/YYYY
   };
 
   return (
@@ -176,14 +173,12 @@ const ProjectsPage = () => {
                 />
                 {project.name}
               </h3>
-              <p>Due: {project.dueDate}</p>
+              <p>Due: {formatDate(project.dueDate)}</p>
               <p>{project.description}</p>
               <div className="project-controls">
                 <button
                   className="view-tasks-button"
-                  onClick={() =>
-                    navigate("/tasks", { state: { projectId: project.id } })
-                  }
+                  onClick={() => navigateToProjectTasks(project.id)}
                 >
                   View Tasks
                 </button>
