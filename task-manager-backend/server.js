@@ -4,37 +4,36 @@ const cors = require("cors");
 const { Sequelize, DataTypes } = require("sequelize");
 
 const app = express();
-const PORT = 5000;
+const PORT = 5011;
 
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
 
-// Database setup
+// Sequelize setup
 const sequelize = new Sequelize({
   dialect: "sqlite",
   storage: "./taskManager.db",
 });
 
 // Models
-const Project = sequelize.define("Project", {
+const Task = sequelize.define("Task", {
   name: { type: DataTypes.STRING, allowNull: false },
-  description: { type: DataTypes.TEXT, allowNull: true },
-  dueDate: { type: DataTypes.DATE, allowNull: true },
+  dueDate: { type: DataTypes.DATE, allowNull: false },
   completed: { type: DataTypes.BOOLEAN, defaultValue: false },
 });
 
-const Task = sequelize.define("Task", {
+const Project = sequelize.define("Project", {
   name: { type: DataTypes.STRING, allowNull: false },
-  type: { type: DataTypes.STRING, allowNull: true },
-  dueDate: { type: DataTypes.DATE, allowNull: true },
+  description: { type: DataTypes.TEXT },
+  dueDate: { type: DataTypes.DATE, allowNull: false },
   completed: { type: DataTypes.BOOLEAN, defaultValue: false },
 });
 
 Project.hasMany(Task, { as: "tasks", foreignKey: "ProjectId" });
 Task.belongsTo(Project, { foreignKey: "ProjectId" });
 
-// Routes
+// API Endpoints
 
 // Fetch all projects
 app.get("/api/projects", async (req, res) => {
@@ -59,36 +58,122 @@ app.post("/api/projects", async (req, res) => {
   }
 });
 
+// Update a project
+app.put("/api/projects/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, description, dueDate, completed } = req.body;
+    const project = await Project.findByPk(id);
+
+    if (!project) {
+      return res.status(404).json({ error: "Project not found" });
+    }
+
+    project.name = name;
+    project.description = description;
+    project.dueDate = dueDate;
+    project.completed = completed;
+    await project.save();
+
+    res.json(project);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update project" });
+  }
+});
+
+// Delete a project
+app.delete("/api/projects/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const project = await Project.findByPk(id);
+
+    if (!project) {
+      return res.status(404).json({ error: "Project not found" });
+    }
+
+    await project.destroy();
+    res.json({ message: "Project deleted" });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to delete project" });
+  }
+});
+
 // Fetch tasks for a specific project
 app.get("/api/projects/:projectId/tasks", async (req, res) => {
-  const { projectId } = req.params;
   try {
-    const tasks = await Task.findAll({ where: { ProjectId: projectId } });
-    res.json(tasks);
+    const { projectId } = req.params;
+    const project = await Project.findByPk(projectId, {
+      include: { model: Task, as: "tasks" },
+    });
+
+    if (!project) {
+      return res.status(404).json({ error: "Project not found" });
+    }
+
+    res.json(project.tasks);
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch tasks" });
   }
 });
 
-// Add a new task to a specific project
+// Add a task to a specific project
 app.post("/api/projects/:projectId/tasks", async (req, res) => {
-  const { projectId } = req.params;
-  const { name, type, dueDate, completed } = req.body;
   try {
-    const newTask = await Task.create({
-      name,
-      type,
-      dueDate,
-      completed,
-      ProjectId: projectId,
-    });
+    const { projectId } = req.params;
+    const { name, dueDate, completed } = req.body;
+    const project = await Project.findByPk(projectId);
+
+    if (!project) {
+      return res.status(404).json({ error: "Project not found" });
+    }
+
+    const newTask = await Task.create({ name, dueDate, completed, ProjectId: projectId });
     res.json(newTask);
   } catch (error) {
-    res.status(500).json({ error: "Failed to create task" });
+    res.status(500).json({ error: "Failed to add task" });
   }
 });
 
-// Sync database and start server
+// Update a specific task
+app.put("/api/tasks/:taskId", async (req, res) => {
+  try {
+    const { taskId } = req.params;
+    const { name, dueDate, completed } = req.body;
+    const task = await Task.findByPk(taskId);
+
+    if (!task) {
+      return res.status(404).json({ error: "Task not found" });
+    }
+
+    task.name = name;
+    task.dueDate = dueDate;
+    task.completed = completed;
+    await task.save();
+
+    res.json(task);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update task" });
+  }
+});
+
+// Delete a specific task
+app.delete("/api/tasks/:taskId", async (req, res) => {
+  try {
+    const { taskId } = req.params;
+    const task = await Task.findByPk(taskId);
+
+    if (!task) {
+      return res.status(404).json({ error: "Task not found" });
+    }
+
+    await task.destroy();
+    res.json({ message: "Task deleted" });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to delete task" });
+  }
+});
+
+// Start the server
 sequelize.sync({ alter: true }).then(() => {
   console.log("Database synced");
   app.listen(PORT, () => {

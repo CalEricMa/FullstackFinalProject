@@ -18,7 +18,7 @@ const ProjectsPage = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/projects");
+        const response = await axios.get("http://localhost:5011/api/projects");
         setProjects(response.data);
       } catch (error) {
         console.error("Error fetching projects:", error);
@@ -48,7 +48,7 @@ const ProjectsPage = () => {
     try {
       if (editingProjectId) {
         const response = await axios.put(
-          `http://localhost:5000/api/projects/${editingProjectId}`,
+          `http://localhost:5011/api/projects/${editingProjectId}`,
           newProject
         );
         setProjects((prev) =>
@@ -58,7 +58,7 @@ const ProjectsPage = () => {
         );
       } else {
         const response = await axios.post(
-          "http://localhost:5000/api/projects",
+          "http://localhost:5011/api/projects",
           newProject
         );
         setProjects((prev) => [...prev, response.data]);
@@ -71,7 +71,7 @@ const ProjectsPage = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/projects/${id}`);
+      await axios.delete(`http://localhost:5011/api/projects/${id}`);
       setProjects((prev) => prev.filter((project) => project.id !== id));
     } catch (error) {
       console.error("Error deleting project:", error);
@@ -88,7 +88,7 @@ const ProjectsPage = () => {
     try {
       const updatedProject = { ...project, completed: !project.completed };
       const response = await axios.put(
-        `http://localhost:5000/api/projects/${project.id}`,
+        `http://localhost:5011/api/projects/${project.id}`,
         updatedProject
       );
       setProjects((prev) =>

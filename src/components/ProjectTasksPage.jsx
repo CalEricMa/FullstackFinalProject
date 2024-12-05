@@ -21,7 +21,7 @@ const ProjectTasksPage = () => {
     const fetchTasks = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/projects/${projectId}/tasks`
+          `http://localhost:5011/api/projects/${projectId}/tasks`
         );
         setTasks(response.data);
       } catch (error) {
@@ -52,7 +52,7 @@ const ProjectTasksPage = () => {
     try {
       if (editingTaskId) {
         const response = await axios.put(
-          `http://localhost:5000/api/tasks/${editingTaskId}`,
+          `http://localhost:5011/api/tasks/${editingTaskId}`,
           newTask
         );
         setTasks((prev) =>
@@ -62,7 +62,7 @@ const ProjectTasksPage = () => {
         );
       } else {
         const response = await axios.post(
-          `http://localhost:5000/api/projects/${projectId}/tasks`,
+          `http://localhost:5011/api/projects/${projectId}/tasks`,
           newTask
         );
         setTasks((prev) => [...prev, response.data]);
@@ -75,7 +75,7 @@ const ProjectTasksPage = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/tasks/${id}`);
+      await axios.delete(`http://localhost:5011/api/tasks/${id}`);
       setTasks((prev) => prev.filter((task) => task.id !== id));
     } catch (error) {
       console.error("Error deleting task:", error);
@@ -86,7 +86,7 @@ const ProjectTasksPage = () => {
     try {
       const updatedTask = { ...task, completed: !task.completed };
       const response = await axios.put(
-        `http://localhost:5000/api/tasks/${task.id}`,
+        `http://localhost:5011/api/tasks/${task.id}`,
         updatedTask
       );
       setTasks((prev) =>
@@ -129,7 +129,7 @@ const ProjectTasksPage = () => {
   return (
     <div className="tasks-page">
       <div className="welcome-section">
-        <h2>Tasks</h2>
+        <h2>Tasks for Project {projectId}</h2>
       </div>
 
       <div className="task-controls">
